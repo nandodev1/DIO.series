@@ -10,12 +10,15 @@ namespace DIO.series
 
         private int Ano {get; set;}
 
-        public Serie(Genero genero, string titulo, string descricao, int ano)
+        private bool Excluido {get; set; }
+
+        public Serie(int id,Genero genero, string titulo, string descricao, int ano)
         {
             this.Genero = genero;
             this.Titulo = titulo;
             this.Descricao = descricao;
             this.Ano = ano;
+            this.Excluido = false;
         }
         public override string ToString()
         {
@@ -33,6 +36,11 @@ namespace DIO.series
         public int retornaId()
         {
             return this.Id;
+        }
+
+        public void Exclui()
+        {
+            this.Excluido = true;
         }
     }
 }
