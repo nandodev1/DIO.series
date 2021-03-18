@@ -1,3 +1,5 @@
+using System;
+
 namespace DIO.series
 {
     public class Serie : EntidadeBase
@@ -22,10 +24,11 @@ namespace DIO.series
         }
         public override string ToString()
         {
-            return $@"Genero: {this.Genero}\n
-                    Titulo: {this.Titulo} \n
-                    Descrição: {this.Descricao}\n
-                    Ano lançamento: {this.Ano}";
+            return $@"Genero: {this.Genero}
+            Titulo: {this.Titulo}
+            Descrição: {this.Descricao}
+            Ano lançamento: {this.Ano}
+            Excluido: {this.Excluido}";
         }
 
         public string retornaTitulo()
@@ -41,6 +44,11 @@ namespace DIO.series
         public void Exclui()
         {
             this.Excluido = true;
+        }
+
+        internal bool serieRetornaExcluido()
+        {
+            return this.Excluido;
         }
     }
 }

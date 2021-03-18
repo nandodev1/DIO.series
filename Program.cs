@@ -19,10 +19,10 @@ namespace DIO.series
                         InsereSerie();
                     break;
                     case "3":
-                        // AtualizaSerie();
+                        AtualizaSerie();
                     break;
                     case "4":
-                        // VisualizarSerie();
+                        VisualizarSerie();
                     break;
                     case "C":
                         Console.Clear();
@@ -36,6 +36,44 @@ namespace DIO.series
                 opcaoUsuario = ObterOpcaoUsuario();
             }
             Console.WriteLine(";-) '\'o/");
+        }
+
+        private static void VisualizarSerie()
+        {
+            Console.WriteLine("Digit o ID da serie.");
+            int entradaId = int.Parse(Console.ReadLine());
+
+            var serie = listarepositorio.RetornaPorId(entradaId);
+
+            Console.WriteLine(serie.ToString());
+        }
+
+        public static void AtualizaSerie()
+        {
+            Console.Write("Insira o id da serie: ");
+            int entradaId = int.Parse(Console.ReadLine());
+
+            foreach (int i in Enum.GetValues(typeof(Genero)))
+            {
+                Console.WriteLine("{0} - {1}", i, Enum.GetName(typeof(Genero), i));
+            }
+            Console.Write("Digite o genero entre as opções acima.");
+            int entradaGenero = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o título da serie.");
+            string entradaTitulo = Console.ReadLine();
+            
+            Console.Write("Digite o ano de inicio da serie.");
+            int entradaAno = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite a descrição da serie.");
+            string entradaDescricao = Console.ReadLine();
+
+            Serie atualizaSerie = new Serie(id: entradaId, genero: (Genero) entradaGenero,
+                                        titulo: entradaTitulo, ano: entradaAno, descricao: entradaDescricao);
+
+            listarepositorio.Atualiza(entradaId, atualizaSerie);  
+
         }
 
         private static void InsereSerie()
@@ -79,7 +117,8 @@ namespace DIO.series
 
             foreach(var serie in lista)
             {
-                Console.WriteLine($"#ID {serie.retornaId()} : {serie.retornaTitulo()}");
+                bool excluido = serie.serieRetornaExcluido();
+                Console.WriteLine("#ID {0} - {1} - {2}",serie.retornaId(), serie.retornaTitulo(), excluido ? "Excluido" : "");
             }
         }
 
