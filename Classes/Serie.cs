@@ -1,6 +1,6 @@
 namespace DIO.series
 {
-    public class Series : EntidadeBase
+    public class Serie : EntidadeBase
     
     {
         public Genero Genero {get; set;}
@@ -10,7 +10,7 @@ namespace DIO.series
 
         private int Ano {get; set;}
 
-        public Series(Genero genero, string titulo, string descricao, int ano)
+        public Serie(Genero genero, string titulo, string descricao, int ano)
         {
             this.Genero = genero;
             this.Titulo = titulo;
